@@ -7,11 +7,7 @@ def extract_data(file_path):
     else:
         print(f"Reading data from: {file_path} ")
 
-        try:
-            df = pd.read_csv(file_path, encoding='utf-8')
-        except UnicodeDecodeError:
-            print("WARNING: UTF-8 failed, trying latin-1 encoding...")  
-            df = pd.read_csv(file_path, encoding='latin-1')
+        df = pd.read_csv(file_path)
 
         if df.empty:
             raise ValueError("CSV file is empty!")
