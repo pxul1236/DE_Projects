@@ -19,7 +19,7 @@ def extract_data(file_path):
     return df
 
 if __name__ == "__main__":
-    file_path = r"data\Sample - Superstore.csv"
+    file_path = r"data\store.csv"
     data = extract_data(file_path)
 
     print(f"\nData Info: ")
