@@ -27,20 +27,20 @@ dag = DAG(
 )
 
 def extract_task():
-    data = extract_data('data\store.csv')
+    data = extract_data('data/store.csv')
     data.to_csv('/opt/airflow/data/extracted_data.csv', index=False)
     print("Extract complete")
 
 def transform_task():
     import pandas as pd
-    data = pd.read_csv('data\store.csv')
+    data = pd.read_csv('data/store.csv')
     transformed = transform_data(data)
     transformed.to_csv('/opt/airflow/data/transformed_data.csv', index=False)
     print("Transform complete")
 
 def load_task():
     import pandas as pd
-    data = pd.read_csv('data\store.csv')
+    data = pd.read_csv('data/store.csv')
     
     conn = create_connection()
     if conn:
