@@ -1,13 +1,17 @@
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_CONFIG = {
-    'host': 'localhost',
-    'port': 5432,
-    'database': 'retail_sales',
-    'user': 'postgres',
-    'password': 'Paulcj103sql'
+    'host': os.getenv('DB_HOST'),
+    'port': os.getenv('DB_PORT'),
+    'database': os.getenv('DB_NAME'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD')
 }
 
 def create_connection():
