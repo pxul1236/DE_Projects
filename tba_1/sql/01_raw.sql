@@ -61,6 +61,6 @@ CREATE TABLE if NOT EXISTS raw.water_service_connection(
     length_m TEXT,
     service_manager TEXT,
     shape__length TEXT,
-    load_id INTEGER PRIMARY KEY,
+    load_id INTEGER NOT NULL REFERENCES raw.load_log(load_id),
     loaded_at TIMESTAMPtz DEFAULT now()
 );
