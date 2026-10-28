@@ -6,7 +6,7 @@ services:                 # list of programs (containers) to run
       POSTGRES_PASSWORD: de      # password (fine locally, never for real systems)
       POSTGRES_DB: water         # create a database called "water"
     ports:
-      - "5432:5432"       # your laptop's port 5432 → the container's port 5432
+      - "5433:5432"       # your laptop's port 5432 → the container's port 5432
     volumes:
       - pgdata:/var/lib/postgresql/data   # save the data outside the container
 volumes:
