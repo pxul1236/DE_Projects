@@ -1,11 +1,11 @@
 CREATE SCHEMA if NOT EXISTS raw;
 
 CREATE TABLE if NOT EXISTS raw.load_log(
-    load_id  serial,
+    load_id  serial PRIMARY KEY,
     file_name TEXT,
-    file_hash TEXT UNIQUE,
+    file_hash TEXT NOT NULL UNIQUE,
     row_count INTEGER,
-    loaded_at TIMESTAMPtz DEFAULT now(
+    loaded_at TIMESTAMPtz DEFAULT now()
 );
 
 CREATE TABLE if NOT EXISTS raw.water_service_connection(
@@ -61,9 +61,6 @@ CREATE TABLE if NOT EXISTS raw.water_service_connection(
     length_m TEXT,
     service_manager TEXT,
     shape__length TEXT,
-    load_id INTEGER,
+    load_id INTEGER PRIMARY KEY,
     loaded_at TIMESTAMPtz DEFAULT now()
 );
-now()
-CR
-)
