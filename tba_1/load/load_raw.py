@@ -1,6 +1,7 @@
 import psycopg
 import csv
 import hashlib
+from psycopg import sql
 
 CONN_STR = "host=localhost  port=5433 dbname=water user=de password=de"
 CSV_PATH = "data/Water_Service_Connection.csv"
@@ -29,7 +30,36 @@ def main ():
                 print("already loaded, skipping")
                 return
 
-            print("new file, would load it now")
+            cur.execute(
+                "insert into raw.load_log (file_name, file_hash) values (%s, %s) returning load_id",
+                (CSV_PATH, file_hash)
+            )
+            load_id = cur.fetchone()[0]
+            print("created load", load_id)
+
+            with open(CSV_PATH, newline="", encoding="utf-8-sig") as f:
+                    reader = csv.reader(f)
+                    header = next(reader)
+
+                    if len(header) != 52:
+                        raise ValueError(f"expected 52 columns, got {len(header)}")
+
+                    cols = [c.lower() for c in header] + ["load_id"]
+                    copy_cmd = sql.SQL("copy raw.water_service_connection ({}) from stdin").format(
+                        sql.SQL(", ").join(sql.Identifier(c) for c in cols)
+                    )
+
+                    row_count = 0
+                    with cur.copy(copy_cmd) as copy:
+                        for row in reader:
+                            copy.write_row(row + [load_id])
+                            row_count += 1
+
+                    cur.execute(
+                        "update raw.load_log set row_count = %s where load_id = %s",
+                        (row_count, load_id)
+                    )
+                    print(f"loaded {row_count} rows as load {load_id}")
 
 
 if __name__ == "__main__":
