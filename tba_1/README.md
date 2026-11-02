@@ -179,7 +179,7 @@ tba_1/
 - [x] Raw schema with load tracking
 - [x] Idempotent, transactional Python loader with column guard
 - [x] dbt installed and connected
-- [ ] dbt staging model: types, consistent text, NULLs for placeholders, flagged bad dates
+- [x] dbt staging model: types, consistent text, NULLs for placeholders, flagged bad dates
 - [ ] dbt report models: connections by install decade, oldest connections by material and water zone (window functions, CTEs)
 - [ ] dbt tests: unique and not-null IDs, accepted values, no future install dates
 - [ ] Power BI dashboard
