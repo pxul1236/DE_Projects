@@ -20,5 +20,5 @@ models:
       - name: install_date
         data_tests:
           - not_null
-            config:
+              config:
                 severity: warn
