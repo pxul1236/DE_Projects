@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw                         
+    schema: raw                       
+    tables:
+      - name: water_service_connection
+      - name: load_log
