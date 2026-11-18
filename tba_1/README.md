@@ -159,7 +159,7 @@ Run step 5 again and it prints `already loaded, skipping`. The count stays at 17
 ## Project structure
 
 ```
-tba_1/
+gc_water_connections_pipeline/
 ├── data/                   # source CSV (git-ignored)
 ├── load/
 │   └── load_raw.py         # raw loader
