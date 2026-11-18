@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_water_connection
+    columns:
+      - name: connection_id
+        data_tests:
+          - unique
+          - not_null
+      - name: connection_use
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SERVICE - DOMESTIC', 'SERVICE - FIRE']
+      - name: water_category
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['POTABLE', 'NON-DRINKING', 'RECYCLED', 'RECYCLED A']
+      - name: install_date
+        data_tests:
+          - not_null
+            config:
+                severity: warn
